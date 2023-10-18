@@ -6,7 +6,6 @@ import { useState } from "react";
 function AddUser(props) {
   const [enteredUserName, setUserName] = useState("");
   const [enteredUserAge, setUserAge] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const userNameChangeHandler = (event) => {
     setUserName(event.target.value);
@@ -16,7 +15,17 @@ function AddUser(props) {
   };
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    props.onSubmitForm({ enteredUserName, enteredUserAge });
+    if (
+      enteredUserName.trim().length === 0 ||
+      enteredUserAge.trim().length === 0
+    ) {
+      return;
+    }
+    if (+enteredUserAge < 1) {
+      // the '+' will force a string into a number if possible
+      return;
+    }
+    props.onSubmitForm(enteredUserName, enteredUserAge);
     setUserName("");
     setUserAge("");
   };
