@@ -1,8 +1,9 @@
-import "../Styles/Card.css"
+import classes from "../Styles/Card.module.css";
 
 function Card(props) {
-  const classes = "card " + props.className; // anything we receive from outside is added
-  return <div className={classes}>{props.children}</div>;
+  return (
+    <div className={`${classes.card} ${props.className}`}>{props.children}</div>
+  );
 }
 
 // the value of the "children" prop will be the content between

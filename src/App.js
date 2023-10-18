@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import AddUser from "./Components/AddUser";
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  const onCreateNewUserHandler = (newUser) => {
+    console.log(users);
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+    console.log(users);
+  };
   return (
     <div>
-      <AddUser />
+      <AddUser onSubmitForm={onCreateNewUserHandler} />
     </div>
   );
 }
